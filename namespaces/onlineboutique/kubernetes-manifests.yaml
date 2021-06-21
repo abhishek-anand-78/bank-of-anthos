@@ -29,7 +29,7 @@ spec:
       labels:
         app: emailservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -85,7 +85,7 @@ spec:
       labels:
         app: checkoutservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       containers:
         - name: server
           image: gcr.io/google-samples/microservices-demo/checkoutservice:v0.2.3
@@ -154,7 +154,7 @@ spec:
       labels:
         app: recommendationservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -216,7 +216,7 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       containers:
         - name: server
           image: gcr.io/google-samples/microservices-demo/frontend:v0.2.3
@@ -256,7 +256,7 @@ spec:
           - name: AD_SERVICE_ADDR
             value: "adservice:9555"
           # # ENV_PLATFORM: One of: local, gcp, aws, azure, onprem
-          # # When not set, connect-sa-uss to "local" unless running in GKE, otherwies auto-sets to gcp 
+          # # When not set, defaults to "local" unless running in GKE, otherwies auto-sets to gcp 
           # - name: ENV_PLATFORM 
           #   value: "aws"
           # - name: DISABLE_TRACING
@@ -312,7 +312,7 @@ spec:
       labels:
         app: paymentservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -362,7 +362,7 @@ spec:
       labels:
         app: productcatalogservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -420,7 +420,7 @@ spec:
       labels:
         app: cartservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -476,7 +476,7 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       containers:
@@ -508,7 +508,7 @@ spec:
       labels:
         app: currencyservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -565,7 +565,7 @@ spec:
       labels:
         app: shippingservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       containers:
       - name: server
         image: gcr.io/google-samples/microservices-demo/shippingservice:v0.2.3
@@ -676,7 +676,7 @@ spec:
       labels:
         app: adservice
     spec:
-      serviceAccountName: connect-sa-us
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
