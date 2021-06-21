@@ -12,10 +12,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
-kind: Namespace
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
 metadata:
-  name: onlineboutique
-  labels:
-    env: asm
-    istio-injection: enabled
+  name: frontend-gateway
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: frontend-ingress
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - frontend-gateway
+  http:
+  - route:
+    - destination:
+        host: frontend
+        port:
+          number: 80
