@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-kind: ClusterSelector
-apiVersion: configmanagement.gke.io/v1
-metadata:
-  name: asm
-spec:
-  selector:
-    matchLabels:
-      environment: asm
+#kind: ClusterSelector
+#apiVersion: configmanagement.gke.io/v1
+#metadata:
+#  name: asm
+#spec:
+#  selector:
+#    matchLabels:
+#      environment: asm

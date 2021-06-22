@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -28,23 +27,20 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
-      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       containers:
-      - name: loadgenerator
-        image: gcr.io/bank-of-anthos/loadgenerator:v0.3.0
+      - name: main
+        image: gcr.io/google-samples/microservices-demo/loadgenerator:v0.2.0
         env:
         - name: FRONTEND_ADDR
-          value: "frontend:80"
+          value: "frontend.default:80"
         - name: USERS
-          value: "5"
-        - name: LOG_LEVEL
-          value: "error"
+          value: "100"
         resources:
           requests:
-            cpu: 30m
-            memory: 512Mi
+            cpu: 300m
+            memory: 256Mi
           limits:
             cpu: 500m
-            memory: 1Gi
+            memory: 512Mi
