@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,11 +11,28 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-apiVersion: v1
-kind: Namespace
+apiVersion: networking.gke.io/v1
+kind: MultiClusterService
 metadata:
-  name: boa
-  labels:
-    env: istio
-    istio-injection: enabled
+  name: frontend-mcs
+spec:
+  template:
+    spec:
+      selector:
+        app: frontend
+      ports:
+      - name: http
+        protocol: TCP
+        port: 8080
+        targetPort: 8080
+---
+apiVersion: networking.gke.io/v1
+kind: MultiClusterIngress
+metadata:
+  name: frontend-global-ingress
+spec:
+  template:
+    spec:
+      backend:
+        serviceName: frontend-mcs
+        servicePort: 8080
