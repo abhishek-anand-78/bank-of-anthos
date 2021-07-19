@@ -17,5 +17,5 @@ kind: Namespace
 metadata:
   name: onlineboutique
   labels:
-    env: 1-9-6-asm-2
+    env: istio
     istio-injection: enabled
